@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeções Populacionais Detalhadas V3 - Camaçari</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfaff; /* Um lilás extremamente claro, quase branco */
+            color: #4a0e6c; /* Roxo bem escuro para texto principal, evitando branco */
+        }
+        .title-violet {
+            color: #6D28D9; /* Violeta (Tailwind violet-700) */
+            font-weight: bold;
+        }
+        .title-lilac {
+            color: #8B5CF6; /* Lilás (Tailwind violet-500) */
+            font-weight: bold;
+        }
+        .footer-text {
+            font-size: 0.7rem; /* 11.2px */
+            color: #5f5170; /* Roxo acinzentado */
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #e9d8f5; /* Borda lilás clara */
+            margin-top: 20px;
+        }
+        .section-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 28px; /* Aumentei um pouco o padding */
+            margin-bottom: 35px; /* Aumentei a margem inferior */
+            box-shadow: 0 10px 30px rgba(109, 40, 217, 0.12); /* Sombra violeta um pouco mais pronunciada */
+        }
+        .emoji-title {
+            margin-right: 12px;
+            font-size: 1.6em; 
+            vertical-align: middle;
+        }
+        h1 {
+             color: #4C1D95; /* Violeta bem escuro (Tailwind violet-900) */
+        }
+        h2, h3, h4, p, li, th, td {
+            color: #3c1658; /* Cor base para textos, garantindo não ser branco */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #D8B4FE; /* Lilás (Tailwind violet-300) */
+            padding: 12px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #F3E8FF; /* Lilás muito claro (Tailwind violet-100) */
+            color: #5B21B6; /* Violeta (Tailwind violet-700) */
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 400px;
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .text-content {
+            color: #4a2c63; /* Tom de roxo mais suave para parágrafos */
+            line-height: 1.7; /* Aumentei o espaçamento entre linhas */
+        }
+        .highlight-yellow {
+            background-color: #FFFBEB; /* Amarelo mais claro (Tailwind yellow-50) */
+            color: #78350F; /* Amarelo escuro (Tailwind amber-800) */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .highlight-red {
+            background-color: #FFF1F2; /* Vermelho mais claro (Tailwind red-50) */
+            color: #9F1239; /* Vermelho escuro (Tailwind rose-800) */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .highlight-green {
+            background-color: #F0FDF4; /* Verde mais claro (Tailwind green-50) */
+            color: #166534; /* Verde escuro (Tailwind green-800) */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+         .highlight-blue {
+            background-color: #EFF6FF; /* Azul mais claro (Tailwind blue-50) */
+            color: #1E40AF; /* Azul escuro (Tailwind blue-800) */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f5effc; /* Lilás bem claro */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A78BFA; /* Lilás */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6D28D9; /* Violeta */
+        }
+        .credits-section {
+            background-color: #E9D5FF; /* Lilás bem claro (Tailwind violet-200) */
+            color: #4C1D95; /* Violeta escuro (Tailwind violet-900) */
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        .credits-section h2 {
+            color: #4C1D95;
+        }
+        .credits-section p {
+            color: #5B21B6; /* Violeta (Tailwind violet-700) */
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <header class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold">🏙️ PROJEÇÕES POPULACIONAIS PARA O MUNICÍPIO DE CAMAÇARI E SEUS DISTRITOS 🌍</h1>
+        <p class="text-lg text-gray-700 mt-3">Horizontes Detalhados: 2030, 2033 e 2040</p>
+    </header>
+
+    <section class="section-card" id="introducao">
+        <h2 class="text-2xl title-violet mb-5 flex items-center">
+            <span class="emoji-title">📜</span>
+            Apresentação e Introdução
+        </h2>
+        <p class="mb-4 text-content">
+            Camaçari vivencia um período de intensas transformações territoriais e socioeconômicas, impulsionadas por fatores como sua <span class="highlight-yellow">posição estratégica</span> na Região Metropolitana de Salvador, a dinâmica do Polo Industrial, o desenvolvimento turístico da Orla e os fluxos migratórios associados. Neste contexto dinâmico, o planejamento urbano e ambiental responsável torna-se ainda mais crucial para garantir um crescimento ordenado, sustentável e que promova a qualidade de vida para todos os seus munícipes.
+        </p>
+        <p class="mb-4 text-content">
+            Este documento, elaborado no âmbito da Coordenadoria de Planejamento e Projetos (CPP) da Secretaria de Desenvolvimento Urbano e Meio Ambiente (SEDUR), apresenta um estudo sobre as projeções populacionais para o município de Camaçari e seus distritos (Sede, Abrantes e Monte Gordo), para os horizontes de <span class="highlight-blue">2030, 2033</span> e <span class="highlight-blue">2040</span>. Utilizando como base os dados mais recentes do Censo Demográfico 2022 (IBGE), complementados por séries históricas populacionais e de registros vitais, aplicamos métodos de extrapolação para estimar cenários futuros de crescimento.
+        </p>
+         <p class="mb-4 text-content">
+            O objetivo deste briefing é fornecer ao corpo técnico e gestores desta Secretaria e da Prefeitura Municipal um panorama das tendências demográficas esperadas, correlacionando-as com as características territoriais e os desafios do desenvolvimento urbano municipal. Compreender as tendências de crescimento e a distribuição espacial da população futura é fundamental para o planejamento urbano e territorial, subsidiando a tomada de decisões estratégicas relacionadas à infraestrutura, serviços públicos, habitação, mobilidade, desenvolvimento econômico e preservação ambiental, em consonância com as diretrizes do Plano Diretor de Desenvolvimento Urbano Sustentável (PDDU-S) e seus instrumentos complementares, como o Sistema de Áreas de Valor Ambiental e Cultural (SAVAM) visando a construção de uma Camaçari mais preparada para o futuro.
+        </p>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <section class="section-card" id="metodologia">
+        <h2 class="text-2xl title-violet mb-5 flex items-center">
+            <span class="emoji-title">⚙️</span>
+            Metodologia e Limitações dos Dados
+        </h2>
+        <p class="mb-3 text-content">
+            Para estimar a população futura, foram empregados métodos de projeção matemática baseados nas tendências observadas entre os Censos Demográficos de 2010 e 2022. A análise dos componentes demográficos (nascimentos e óbitos), possível a partir dos dados de Registro Civil e Mortalidade, revelou que o <span class="highlight-red">crescimento natural</span> (diferença entre nascimentos e óbitos) tem diminuído no município, enquanto a <span class="highlight-green">migração líquida</span> (diferença entre imigrantes e emigrantes) tornou-se o principal motor do crescimento populacional total, especialmente no período mais recente analisado (próximo a 2022).
+        </p>
+        <p class="mb-3 text-content">
+            É fundamental destacar que a base de dados disponibilizada pelo IBGE ainda <span class="highlight-yellow">não contém informações diretas</span> sobre os fluxos migratórios (imigração e emigração) para Camaçari, tampouco dados sobre o perfil (idade, sexo, origem/destino) dos migrantes. Desta forma, a componente migratória foi estimada de forma indireta, como um resíduo. Calculou-se a Taxa de Crescimento Natural (TCN = Taxa Bruta de Natalidade - Taxa Bruta de Mortalidade) para o município e subtraiu-se esse valor da Taxa de Crescimento Total (TCT) observada entre os censos. A diferença resultante (Taxa Líquida de Migração Estimada ≈ TCT - TCN) representa o saldo migratório médio anual necessário para explicar o crescimento total observado. Embora essa estimativa tenha indicado uma crescente importância da migração (saldo médio positivo e crescente entre 2010-2022), ela não detalha a dinâmica dos fluxos e possui limitações inerentes ao método residual. 
+        </p>
+        <p class="mb-3 text-content">
+            Diante dessas limitações, e visando a praticidade e a consistência com os dados disponíveis, foram aplicados dois métodos principais de extrapolação para as projeções:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-content pl-5 mb-3">
+            <li>📈 <strong>Método Geométrico:</strong> Assume que a taxa percentual de crescimento anual observada entre 2010 e 2022 se manterá constante no futuro. Este método tende a gerar projeções <span class="highlight-green">mais elevadas</span>, especialmente para áreas com crescimento acelerado no passado recente.</li>
+            <li>📊 <strong>Método Linear:</strong> Assume que o incremento absoluto (número de novos habitantes por ano) observado entre 2010 e 2022 se manterá constante. Este método tende a gerar projeções <span class="highlight-blue">mais conservadoras</span>, pois não considera o efeito composto do crescimento sobre uma base populacional crescente.</li>
+        </ul>
+        <p class="mt-4 text-sm text-gray-600 italic">
+           <span class="emoji-title text-xl">⚠️</span> <strong>Observação sobre Limitações:</strong> É crucial ressaltar as limitações inerentes a estes métodos e à base de dados disponível. Métodos demográficos mais sofisticados, como o das Componentes por Coorte, não puderam ser aplicados de forma robusta devido à ausência de dados detalhados sobre migração por idade e sexo e a falta de séries históricas consistentes para as taxas de fecundidade e mortalidade específicas por idade, sobretudo em nível distrital. As projeções, portanto, baseiam-se na continuidade das tendências passadas e não incorporam automaticamente possíveis mudanças futuras em fatores socioeconômicos, políticas públicas ou eventos imprevistos que possam alterar os padrões demográficos.
+        </p>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <section class="section-card" id="resultados">
+        <h2 class="text-2xl title-violet mb-5 flex items-center">
+            <span class="emoji-title">🔢</span>
+            Resultados das Projeções Populacionais
+        </h2>
+        <p class="mb-1 text-content font-semibold">População Base (Censo Demográfico 2022 - IBGE):</p>
+            <ul class="list-none space-y-1 text-content pl-5 mb-4">
+                <li>📍 Total municipal: <strong class="text-violet-700">300.372 habitantes</strong></li>
+                <li>🏘️ Distrito Sede: <strong class="text-violet-700">186.300 habitantes</strong></li>
+                <li>🏖️ Distrito Abrantes: <strong class="text-violet-700">79.552 habitantes</strong></li>
+                <li>🏞️ Distrito Monte Gordo: <strong class="text-violet-700">34.520 habitantes</strong></li>
+            </ul>
+        
+        <p class="mb-4 text-content">
+            A aplicação dos métodos linear e geométrico resultou em dois cenários de crescimento. O método geométrico projeta um crescimento total mais acentuado, atingindo cerca de <strong class="highlight-green">413 mil habitantes em 2040</strong>, enquanto o método linear aponta para aproximadamente <strong class="highlight-blue">386 mil habitantes</strong> no mesmo ano. A diferença é particularmente expressiva para o Distrito de <span class="highlight-red">Abrantes</span>, devido à sua altíssima taxa de crescimento (4,26% a.a. entre 2010-2022).
+        </p>
+
+        <h3 class="text-xl title-lilac mt-6 mb-3 flex items-center">
+            <span class="emoji-title">📅</span>
+            Tabela Resumo das Projeções Populacionais (2030-2040)
+        </h3>
+        <div class="overflow-x-auto shadow-lg rounded-lg">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Localidade</th>
+                        <th>Método</th>
+                        <th>Pop. Proj. 2030</th>
+                        <th>Pop. Proj. 2033 (horizonte PDDU-S)</th>
+                        <th>Pop. Proj. 2040</th>
+                        <th>Taxa Anual Média (2010-22)</th>
+                        <th>Incremento Absoluto Anual Médio (2010-22)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Município Total</td><td><span class="highlight-green">Geométrica</span></td><td>346.248</td><td>365.120</td><td>412.998</td><td>1,79%</td><td>-</td></tr>
+                    <tr><td></td><td><span class="highlight-blue">Linear</span></td><td>338.640</td><td>352.991</td><td>386.476</td><td>-</td><td>+4.784</td></tr>
+                    <tr><td>Distrito Sede</td><td><span class="highlight-green">Geométrica</span></td><td>202.076</td><td>208.196</td><td>223.579</td><td>1,01%</td><td>-</td></tr>
+                    <tr><td></td><td><span class="highlight-blue">Linear</span></td><td>200.424</td><td>205.721</td><td>218.079</td><td>-</td><td>+1.766</td></tr>
+                    <tr><td>Distrito Abrantes</td><td><span class="highlight-green">Geométrica</span></td><td>111.039</td><td>125.887</td><td>168.952</td><td class="highlight-red">4,26%</td><td>-</td></tr>
+                    <tr><td></td><td><span class="highlight-blue">Linear</span></td><td>100.398</td><td>108.215</td><td>126.456</td><td>-</td><td>+2.606</td></tr>
+                    <tr><td>Distrito Monte Gordo</td><td><span class="highlight-green">Geométrica</span></td><td>38.248</td><td>39.773</td><td>43.488</td><td>1,29%</td><td>-</td></tr>
+                    <tr><td></td><td><span class="highlight-blue">Linear</span></td><td>37.818</td><td>39.055</td><td>41.941</td><td>-</td><td>+412</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-3 text-xs text-gray-500 italic">Fonte: dados oriundos do Censo Demográfico 2022 - Resultados do Universo (IBGE). Elaboração própria com suporte de IA.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+            <div>
+                <h3 class="text-xl title-lilac mb-4 text-center flex items-center justify-center">
+                    <span class="emoji-title">🍕</span>
+                    Distribuição Pop. Base por Distrito (Censo 2022)
+                </h3>
+                <div class="chart-container" style="height:350px;">
+                    <canvas id="distribuicaoPopulacao2022"></canvas>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl title-lilac mb-4 text-center flex items-center justify-center">
+                     <span class="emoji-title">🚀</span>
+                    Projeção Pop. Total do Município (2040)
+                </h3>
+                <div class="chart-container" style="height:350px;">
+                    <canvas id="projecaoTotalMunicipio2040"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="text-xl title-lilac mt-12 mb-4 text-center flex items-center justify-center">
+            <span class="emoji-title">🆚</span>
+            Projeções Populacionais por Distrito (Comparativo 2022 vs 2040)
+        </h3>
+        <div class="chart-container">
+            <canvas id="projecaoDistritosComparativo"></canvas>
+        </div>
+        
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <section class="section-card" id="analise">
+        <h2 class="text-2xl title-violet mb-6 flex items-center">
+            <span class="emoji-title">🗺️</span>
+            Correlação com Características Territoriais e Desenvolvimento Urbano
+        </h2>
+        <p class="mb-5 text-content">
+            As projeções refletem e intensificam padrões de desenvolvimento urbano já observados. O município possui uma clara divisão funcional: a Sede (administrativa, industrial, comercial) e a Orla (Abrantes e Monte Gordo - turística, imobiliária, ambiental).
+        </p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="p-5 border-2 border-violet-300 rounded-xl bg-violet-50 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+                <h3 class="text-lg title-violet mb-3 flex items-center">
+                    <span class="emoji-title">🏢</span>
+                    Distrito Sede
+                </h3>
+                <p class="text-sm text-content mb-2">Concentra atividades administrativas, industriais (Polo) e comerciais. Crescimento mais lento (<span class="highlight-blue">1,01% a.a.</span>), mas absorverá entre <span class="highlight-yellow">32 mil e 37 mil</span> novos residentes até 2040.</p>
+                <p class="text-sm text-content mt-2"><strong>Desafios Principais:</strong></p>
+                <ul class="list-disc list-inside text-sm text-content space-y-1 pl-4">
+                    <li>Gestão da densificação.</li>
+                    <li>Requalificação urbana e infraestrutura.</li>
+                    <li>Expansão para periferias (vetor Oeste/Parafuso).</li>
+                    <li>Atenção a assentamentos informais.</li>
+                </ul>
+            </div>
+            <div class="p-5 border-2 border-red-300 rounded-xl bg-red-50 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+                <h3 class="text-lg title-violet mb-3 flex items-center">
+                    <span class="emoji-title">🌊</span>
+                    Distrito Abrantes
+                </h3>
+                <p class="text-sm text-content mb-2">Principal vetor de expansão (<span class="highlight-red">4,26% a.a.</span>). Forte vocação turística e imobiliária. Proximidade com Salvador.</p>
+                <p class="text-sm text-content mt-2"><strong>Desafios Significativos:</strong></p>
+                 <ul class="list-disc list-inside text-sm text-content space-y-1 pl-4">
+                    <li><span class="highlight-red">Forte pressão demográfica</span>.</li>
+                    <li>Expansão de infraestrutura (saneamento, água, energia, mobilidade).</li>
+                    <li>Demanda por equipamentos sociais.</li>
+                    <li>Conflitos: ocupação vs. áreas de valor ambiental (SAVAM).</li>
+                </ul>
+            </div>
+            <div class="p-5 border-2 border-green-300 rounded-xl bg-green-50 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+                <h3 class="text-lg title-violet mb-3 flex items-center">
+                    <span class="emoji-title">🌳</span>
+                    Distrito Monte Gordo
+                </h3>
+                <p class="text-sm text-content mb-2">Crescimento intermediário (<span class="highlight-blue">1,29% a.a.</span>). Localidades turísticas (Barra do Jacuípe, Guarajuba). População quilombola.</p>
+                <p class="text-sm text-content mt-2"><strong>Desafios Relevantes:</strong></p>
+                <ul class="list-disc list-inside text-sm text-content space-y-1 pl-4">
+                    <li>Conciliação: desenvolvimento vs. preservação.</li>
+                    <li>Infraestrutura para residentes e turistas.</li>
+                    <li>Proteção de áreas sensíveis e comunidades tradicionais.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+     <section class="section-card" id="implicacoes">
+        <h2 class="text-2xl title-violet mb-6 flex items-center">
+            <span class="emoji-title">💡</span>
+            Implicações para o Planejamento Municipal
+        </h2>
+        <p class="mb-5 text-content">
+            As projeções indicam crescimento contínuo. O cenário geométrico (mais de <span class="highlight-green">413 mil hab. em 2040</span>) representa um desafio substancial, enquanto o linear (<span class="highlight-blue">386 mil hab.</span>) ainda demanda planejamento robusto. As principais implicações incluem:
+        </p>
+        <div class="space-y-5">
+            <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-violet-600 shadow-sm">
+                <span class="emoji-title text-2xl mr-4">🛠️</span>
+                <div>
+                    <h4 class="font-semibold title-lilac text-lg">Infraestrutura e Serviços</h4>
+                    <p class="text-sm text-content">Investimento estratégico em água, esgoto, drenagem, energia, resíduos. Demanda por saúde, educação, segurança.</p>
+                </div>
+            </div>
+            <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-blue-600 shadow-sm">
+                <span class="emoji-title text-2xl mr-4">🏡</span>
+                <div>
+                    <h4 class="font-semibold title-lilac text-lg">Habitação</h4>
+                    <p class="text-sm text-content">Políticas para moradia digna, combate ao déficit habitacional, orientação da expansão urbana.</p>
+                </div>
+            </div>
+            <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-yellow-500 shadow-sm">
+                <span class="emoji-title text-2xl mr-4">🚗</span>
+                <div>
+                    <h4 class="font-semibold title-lilac text-lg">Mobilidade Urbana</h4>
+                    <p class="text-sm text-content">Investimentos em sistema viário, transporte coletivo, modos ativos (ciclovias, calçadas).</p>
+                </div>
+            </div>
+            <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-green-600 shadow-sm">
+                <span class="emoji-title text-2xl mr-4">📈</span>
+                <div>
+                    <h4 class="font-semibold title-lilac text-lg">Desenvolvimento Econômico e Emprego</h4>
+                    <p class="text-sm text-content">Atrair investimentos, diversificar economia, gerar emprego e renda.</p>
+                </div>
+            </div>
+            <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-red-600 shadow-sm">
+                <span class="emoji-title text-2xl mr-4">🌿</span>
+                <div>
+                    <h4 class="font-semibold title-lilac text-lg">Gestão Ambiental e Territorial</h4>
+                    <p class="text-sm text-content">Conciliar ocupação urbana com proteção da SAVAM. Aplicação efetiva do PDDU-S.</p>
+                </div>
+            </div>
+             <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-gray-500 shadow-sm">
+                <span class="emoji-title text-2xl mr-4">🔍</span>
+                <div>
+                    <h4 class="font-semibold title-lilac text-lg">Revisão Contínua</h4>
+                    <p class="text-sm text-content">Monitorar indicadores demográficos e socioeconômicos, revisar projeções e planos municipais.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <section class="section-card" id="conclusoes">
+        <h2 class="text-2xl title-violet mb-5 flex items-center">
+            <span class="emoji-title">🏁</span>
+            Considerações Finais
+        </h2>
+        <p class="text-content mb-4">
+            As projeções populacionais apresentadas fornecem subsídios quantitativos <span class="highlight-yellow">importantes</span> para o planejamento de Camaçari. O cenário geométrico representa uma visão de continuidade do forte crescimento recente, impulsionado pela migração, enquanto o cenário linear oferece uma perspectiva mais conservadora.
+        </p>
+        <p class="text-content">
+            A realidade futura dependerá de múltiplos fatores, mas ambos os cenários indicam a necessidade premente de planejamento proativo e investimentos consistentes para garantir um desenvolvimento urbano <span class="highlight-green">sustentável, inclusivo</span> e com <span class="highlight-blue">qualidade de vida</span> para todos os camaçarienses. Recomenda-se a utilização destes cenários como balizadores para estudos setoriais e para a revisão dos planos municipais, com <span class="highlight-red">monitoramento constante</span> das tendências demográficas.
+        </p>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <section class="credits-section" id="creditos">
+        <h2 class="text-2xl title-violet mb-4 flex items-center">
+            <span class="emoji-title">🏛️</span>
+            Créditos Institucionais
+        </h2>
+        <p><strong>Documento Base:</strong> BRIEFING SOBRE PROJEÇÕES POPULACIONAIS PARA O MUNICÍPIO DE CAMAÇARI E SEUS DISTRITOS (2030, 2033, 2040)</p>
+        <p><strong>Elaboração:</strong></p>
+        <p class="ml-4">Fábio Moura Costa – Urbanista e Msc. em Geografia</p>
+        <p><strong>Realização:</strong></p>
+        <p class="ml-4">Coordenadoria de Planejamento e Projetos – (CPP)</p>
+        <p class="ml-4">Diretoria de Urbanismo (DIRURB)</p>
+        <p class="ml-4">Secretaria de Desenvolvimento Urbano e Meio Ambiente (SEDUR)</p>
+        <p class="ml-4">Prefeitura Municipal de Camaçari (PMC)</p>
+        <p><strong>Data:</strong> Maio de 2025, Camaçari - BA</p>
+        <p class="mt-3"><strong>Infográfico Digital:</strong> Elaborado com suporte de Inteligência Artificial Generativa, seguindo as diretrizes e conteúdo do documento original.</p>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+<script>
+    // Dados do Censo 2022
+    const populacaoBase2022 = {
+        total: 300372,
+        sede: 186300,
+        abrantes: 79552,
+        monteGordo: 34520
+    };
+
+    // Cores para os gráficos (seguindo a paleta solicitada)
+    const colorVioletPrincipal = 'rgba(109, 40, 217, 0.85)'; // #6D28D9 (violet-700)
+    const colorLilacPrincipal = 'rgba(139, 92, 246, 0.85)'; // #8B5CF6 (violet-500)
+    const colorAzulEscuro = 'rgba(30, 64, 175, 0.85)';    // #1E40AF (blue-700)
+    const colorVerdeEscuro = 'rgba(22, 101, 52, 0.85)';   // #166534 (green-800)
+    const colorVermelho = 'rgba(220, 38, 38, 0.85)';       // #DC2626 (red-600)
+    const colorAmarelo = 'rgba(202, 138, 4, 0.85)';     // #CA8A04 (yellow-600)
+    const colorCinza = 'rgba(71, 85, 105, 0.8)'; // #475569 (slate-600)
+    
+    const colorVioletPrincipalSolid = '#6D28D9';
+    const colorLilacPrincipalSolid = '#8B5CF6';
+    const colorAzulEscuroSolid = '#1E40AF';
+    const colorVerdeEscuroSolid = '#166534';
+    const colorVermelhoSolid = '#DC2626';
+    const colorAmareloSolid = '#CA8A04';
+    const colorCinzaSolid = '#475569';
+    const textColorGraphs = '#3c1658'; // Cor do texto dos gráficos
+
+
+    // Gráfico de Pizza: Distribuição da População Base 2022
+    const ctxDistribuicao = document.getElementById('distribuicaoPopulacao2022').getContext('2d');
+    new Chart(ctxDistribuicao, {
+        type: 'pie',
+        data: {
+            labels: ['Distrito Sede', 'Distrito Abrantes', 'Distrito Monte Gordo'],
+            datasets: [{
+                label: 'População Censo 2022',
+                data: [populacaoBase2022.sede, populacaoBase2022.abrantes, populacaoBase2022.monteGordo],
+                backgroundColor: [colorVioletPrincipal, colorLilacPrincipal, colorAzulEscuro],
+                borderColor: ['#FFFFFF'],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 13 },
+                        color: textColorGraphs
+                    }
+                },
+                title: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed !== null) {
+                                label += new Intl.NumberFormat('pt-BR').format(context.parsed) + ' hab.';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Gráfico de Barras: Projeção População Total Município para 2040
+    const ctxProjecaoTotal = document.getElementById('projecaoTotalMunicipio2040').getContext('2d');
+    new Chart(ctxProjecaoTotal, {
+        type: 'bar',
+        data: {
+            labels: ['Pop. Base 2022', 'Projeção Linear 2040', 'Projeção Geométrica 2040'],
+            datasets: [{
+                label: 'População Total do Município',
+                data: [300372, 386476, 412998],
+                backgroundColor: [colorCinza, colorAzulEscuro, colorVioletPrincipal],
+                borderColor: [colorCinzaSolid, colorAzulEscuroSolid, colorVioletPrincipalSolid],
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: {
+                legend: { display: false },
+                title: { display: false },
+                 tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed.x !== null) {
+                                label += new Intl.NumberFormat('pt-BR').format(context.parsed.x) + ' hab.';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) { return value / 1000 + 'k'; },
+                        color: textColorGraphs
+                    },
+                    grid: { color: '#e9d8f5' }
+                },
+                y: {
+                     ticks: { color: textColorGraphs },
+                     grid: { display: false }
+                }
+            }
+        }
+    });
+
+    // Gráfico de Barras: Projeções Populacionais por Distrito (Comparativo)
+    const ctxProjecaoDistritos = document.getElementById('projecaoDistritosComparativo').getContext('2d');
+    new Chart(ctxProjecaoDistritos, {
+        type: 'bar',
+        data: {
+            labels: ['Sede', 'Abrantes', 'Monte Gordo'],
+            datasets: [
+                {
+                    label: 'Pop. Base 2022',
+                    data: [populacaoBase2022.sede, populacaoBase2022.abrantes, populacaoBase2022.monteGordo],
+                    backgroundColor: colorCinza,
+                    borderColor: colorCinzaSolid,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    order: 3
+                },
+                {
+                    label: 'Projeção Linear 2040',
+                    data: [218079, 126456, 41941],
+                    backgroundColor: colorAzulEscuro, 
+                    borderColor: colorAzulEscuroSolid,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    order: 2
+                },
+                {
+                    label: 'Projeção Geométrica 2040',
+                    data: [223579, 168952, 43488],
+                    backgroundColor: colorVioletPrincipal, 
+                    borderColor: colorVioletPrincipalSolid,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    order: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: { size: 13 },
+                        color: textColorGraphs
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Pop. Base 2022 vs Projeções para 2040 por Distrito',
+                    font: { size: 16, weight: 'bold'},
+                    color: '#4C1D95', // Título do gráfico em violeta escuro
+                    padding: { top: 10, bottom: 20 }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('pt-BR').format(context.parsed.y) + ' hab.';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Número de Habitantes',
+                        color: '#4C1D95',
+                        font: { size: 14, weight: '500'}
+                    },
+                    ticks: {
+                        callback: function(value) { return value / 1000 + 'k'; },
+                        color: textColorGraphs
+                    },
+                    grid: { color: '#e9d8f5' }
+                },
+                x: {
+                     title: {
+                        display: true,
+                        text: 'Distritos',
+                        color: '#4C1D95',
+                        font: { size: 14, weight: '500'}
+                    },
+                     ticks: { color: textColorGraphs },
+                     grid: { display: false }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
