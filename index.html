@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeções Populacionais Detalhadas - Camaçari</title>
+    <title>Projeções Populacionais Detalhadas V3 - Camaçari</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -34,6 +34,15 @@
             padding: 28px; /* Aumentei um pouco o padding */
             margin-bottom: 35px; /* Aumentei a margem inferior */
             box-shadow: 0 10px 30px rgba(109, 40, 217, 0.12); /* Sombra violeta um pouco mais pronunciada */
+        }
+        .transition-card {
+            background-color: #f3e8ff;
+            border: 2px dashed #A78BFA;
+            color: #5B21B6;
+            padding: 20px;
+            margin-bottom: 35px;
+            border-radius: 16px;
+            text-align: center;
         }
         .emoji-title {
             margin-right: 12px;
@@ -146,6 +155,7 @@
         <p class="text-lg text-gray-700 mt-3">Horizontes Detalhados: 2030, 2033 e 2040</p>
     </header>
 
+    <!-- Seção 1: Apresentação/Introdução -->
     <section class="section-card" id="introducao">
         <h2 class="text-2xl title-violet mb-5 flex items-center">
             <span class="emoji-title">📜</span>
@@ -163,34 +173,33 @@
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
 
+    <!-- Seção 2: Metodologia e Limitações dos Dados -->
     <section class="section-card" id="metodologia">
         <h2 class="text-2xl title-violet mb-5 flex items-center">
             <span class="emoji-title">⚙️</span>
-            Metodologia e Limitações dos Dados
+            Metodologia e Limitações dos Dados (Análise Inicial)
         </h2>
         <p class="mb-3 text-content">
             Para estimar a população futura, foram empregados métodos de projeção matemática baseados nas tendências observadas entre os Censos Demográficos de 2010 e 2022. A análise dos componentes demográficos (nascimentos e óbitos), possível a partir dos dados de Registro Civil e Mortalidade, revelou que o <span class="highlight-red">crescimento natural</span> (diferença entre nascimentos e óbitos) tem diminuído no município, enquanto a <span class="highlight-green">migração líquida</span> (diferença entre imigrantes e emigrantes) tornou-se o principal motor do crescimento populacional total, especialmente no período mais recente analisado (próximo a 2022).
         </p>
         <p class="mb-3 text-content">
-            É fundamental destacar que a base de dados disponibilizada pelo IBGE ainda <span class="highlight-yellow">não contém informações diretas</span> sobre os fluxos migratórios (imigração e emigração) para Camaçari, tampouco dados sobre o perfil (idade, sexo, origem/destino) dos migrantes. Desta forma, a componente migratória foi estimada de forma indireta, como um resíduo. Calculou-se a Taxa de Crescimento Natural (TCN = Taxa Bruta de Natalidade - Taxa Bruta de Mortalidade) para o município e subtraiu-se esse valor da Taxa de Crescimento Total (TCT) observada entre os censos. A diferença resultante (Taxa Líquida de Migração Estimada ≈ TCT - TCN) representa o saldo migratório médio anual necessário para explicar o crescimento total observado. Embora essa estimativa tenha indicado uma crescente importância da migração (saldo médio positivo e crescente entre 2010-2022), ela não detalha a dinâmica dos fluxos e possui limitações inerentes ao método residual. 
+            É fundamental destacar que, na análise inicial, a base de dados disponibilizada pelo IBGE ainda <span class="highlight-yellow">não continha informações diretas</span> sobre os fluxos migratórios. Desta forma, a componente migratória foi estimada de forma indireta, como um resíduo.
         </p>
         <p class="mb-3 text-content">
-            Diante dessas limitações, e visando a praticidade e a consistência com os dados disponíveis, foram aplicados dois métodos principais de extrapolação para as projeções:
+            Diante dessas limitações, e visando a praticidade e a consistência com os dados disponíveis na primeira análise, foram aplicados dois métodos principais de extrapolação para as projeções:
         </p>
         <ul class="list-disc list-inside space-y-2 text-content pl-5 mb-3">
             <li>📈 <strong>Método Geométrico:</strong> Assume que a taxa percentual de crescimento anual observada entre 2010 e 2022 se manterá constante no futuro. Este método tende a gerar projeções <span class="highlight-green">mais elevadas</span>, especialmente para áreas com crescimento acelerado no passado recente.</li>
-            <li>📊 <strong>Método Linear:</strong> Assume que o incremento absoluto (número de novos habitantes por ano) observado entre 2010 e 2022 se manterá constante. Este método tende a gerar projeções <span class="highlight-blue">mais conservadoras</span>, pois não considera o efeito composto do crescimento sobre uma base populacional crescente.</li>
+            <li>📊 <strong>Método Linear (ou Aritmético):</strong> Assume que o incremento absoluto (número de novos habitantes por ano) observado entre 2010 e 2022 se manterá constante. Este método tende a gerar projeções <span class="highlight-blue">mais conservadoras</span>, pois não considera o efeito composto do crescimento sobre uma base populacional crescente.</li>
         </ul>
-        <p class="mt-4 text-sm text-gray-600 italic">
-           <span class="emoji-title text-xl">⚠️</span> <strong>Observação sobre Limitações:</strong> É crucial ressaltar as limitações inerentes a estes métodos e à base de dados disponível. Métodos demográficos mais sofisticados, como o das Componentes por Coorte, não puderam ser aplicados de forma robusta devido à ausência de dados detalhados sobre migração por idade e sexo e a falta de séries históricas consistentes para as taxas de fecundidade e mortalidade específicas por idade, sobretudo em nível distrital. As projeções, portanto, baseiam-se na continuidade das tendências passadas e não incorporam automaticamente possíveis mudanças futuras em fatores socioeconômicos, políticas públicas ou eventos imprevistos que possam alterar os padrões demográficos.
-        </p>
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
 
+    <!-- Seção 3: Resultados das Projeções Populacionais -->
     <section class="section-card" id="resultados">
         <h2 class="text-2xl title-violet mb-5 flex items-center">
             <span class="emoji-title">🔢</span>
-            Resultados das Projeções Populacionais
+            Resultados das Projeções (Análise Inicial)
         </h2>
         <p class="mb-1 text-content font-semibold">População Base (Censo Demográfico 2022 - IBGE):</p>
             <ul class="list-none space-y-1 text-content pl-5 mb-4">
@@ -206,7 +215,7 @@
 
         <h3 class="text-xl title-lilac mt-6 mb-3 flex items-center">
             <span class="emoji-title">📅</span>
-            Tabela Resumo das Projeções Populacionais (2030-2040)
+            Tabela Resumo das Projeções Populacionais (Análise Inicial)
         </h3>
         <div class="overflow-x-auto shadow-lg rounded-lg">
             <table>
@@ -248,7 +257,7 @@
             <div>
                 <h3 class="text-xl title-lilac mb-4 text-center flex items-center justify-center">
                      <span class="emoji-title">🚀</span>
-                    Projeção Pop. Total do Município (2040)
+                    Projeção Pop. Total do Município (2040) - Análise Inicial
                 </h3>
                 <div class="chart-container" style="height:350px;">
                     <canvas id="projecaoTotalMunicipio2040"></canvas>
@@ -258,7 +267,7 @@
 
         <h3 class="text-xl title-lilac mt-12 mb-4 text-center flex items-center justify-center">
             <span class="emoji-title">🆚</span>
-            Projeções Populacionais por Distrito (Comparativo 2022 vs 2040)
+            Projeções Populacionais por Distrito (Comparativo 2022 vs 2040) - Análise Inicial
         </h3>
         <div class="chart-container">
             <canvas id="projecaoDistritosComparativo"></canvas>
@@ -267,13 +276,136 @@
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
 
+    <!-- CARD DE TRANSIÇÃO -->
+    <div class="transition-card">
+        <p class="text-2xl mb-2">🔄</p>
+        <h3 class="text-xl font-bold mb-2">ATUALIZAÇÃO E APROFUNDAMENTO DA ANÁLISE</h3>
+        <p class="text-sm">Após a análise inicial, o IBGE divulgou novos dados do Censo 2022, incluindo informações detalhadas sobre <strong>migração</strong>. Isso permitiu um aprofundamento do diagnóstico demográfico e a criação de um terceiro cenário de projeção, mais robusto para a escala municipal visto que não se tem esse tipo de dados para os distritos. As seções a seguir apresentam esta análise atualizada.</p>
+    </div>
+
+    <!-- NOVA SEÇÃO: Caracterização Demográfica Detalhada -->
+    <section class="section-card" id="caracterizacao_detalhada">
+        <h2 class="text-2xl title-violet mb-6 flex items-center">
+            <span class="emoji-title">🧬</span>
+            O DNA Demográfico de Camaçari: Um Retrato Aprofundado
+        </h2>
+        <p class="mb-6 text-content">
+            Para planejar um território tão complexo e multifacetado, é preciso primeiro compreender a sua anatomia populacional. As subseções a seguir se dedicam a estudar este "DNA demográfico", analisando as engrenagens do seu crescimento, a distribuição da população no território, o delicado equilíbrio de sua pirâmide etária e o rico mosaico sociocultural que define a identidade camaçariense.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Card: Dupla Face do Crescimento -->
+            <div class="p-5 rounded-xl bg-violet-50 border-l-4 border-violet-400">
+                <h3 class="text-lg title-lilac mb-3 flex items-center">A Dupla Face do Crescimento</h3>
+                <p class="text-sm text-content mb-2">O crescimento de Camaçari (taxa de <span class="highlight-green">1,79% a.a.</span>) é impulsionado por duas forças distintas:</p>
+                <div class="flex justify-around text-center mt-4">
+                    <div>
+                        <p class="text-3xl">👶</p>
+                        <p class="font-bold text-lg text-blue-800">~2.353/ano</p>
+                        <p class="text-xs">Crescimento Vegetativo (Nascimentos - Óbitos)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl">✈️</p>
+                        <p class="font-bold text-lg text-green-800">~6.257/ano</p>
+                        <p class="text-xs">Saldo Migratório (Imigrantes - Emigrantes)</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-center text-content font-semibold">A <span class="highlight-green">migração</span> é responsável por mais de <span class="highlight-red">72,7%</span> do crescimento anual.</p>
+            </div>
+            
+            <!-- Card: Urbanização Intensa -->
+            <div class="p-5 rounded-xl bg-blue-50 border-l-4 border-blue-400">
+                <h3 class="text-lg title-lilac mb-3 flex items-center">Território e População</h3>
+                <p class="text-sm text-content mb-2">A distribuição da população pelo território é marcadamente desigual, com desafios distintos para áreas urbanas e rurais.</p>
+                <div class="flex justify-around items-center text-center mt-4">
+                    <div>
+                        <p class="text-3xl">🏙️</p>
+                        <p class="font-bold text-2xl text-blue-800">97,85%</p>
+                        <p class="text-xs">População Urbana</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl">🌳</p>
+                        <p class="font-bold text-2xl text-green-800">2,14%</p>
+                        <p class="text-xs">População Rural</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-center text-content text-sm">Alta densidade na Orla pressiona ecossistemas; baixa densidade no campo encarece serviços.</p>
+            </div>
+
+            <!-- Card: Estrutura Etária -->
+            <div class="p-5 rounded-xl bg-yellow-50 border-l-4 border-yellow-400">
+                <h3 class="text-lg title-lilac mb-3 flex items-center">Perfil Humano em Transformação</h3>
+                <p class="text-sm text-content mb-2">A pirâmide etária se assemelha a um "barril", com uma população em amadurecimento.</p>
+                <p class="text-center mt-3"><span class="font-bold text-2xl text-yellow-800">34 anos</span><br><span class="text-xs">Idade Mediana</span></p>
+                <p class="text-center mt-3"><span class="font-bold text-2xl text-green-800">50,4%</span><br><span class="text-xs">Índice de Envelhecimento (pessoas com 60+ anos para cada 100 com até 14 anos)</span></p>
+                <p class="mt-4 text-center text-content text-sm">Indice considerado baixo comparando com Salvador (98,38) e Lauro de Freitas (63,75). Demanda por creches e escolas ainda é alta (21,6%, 0 a 14 anos), mas a população de idosos (10,8%, 60 anos ou mais ) é a que mais cresce, exigindo realocação de recursos para saúde e assistência.</p>
+            </div>
+
+            <!-- Card: Mosaico Sociocultural -->
+            <div class="p-5 rounded-xl bg-red-50 border-l-4 border-red-400">
+                <h3 class="text-lg title-lilac mb-3 flex items-center">Mosaico Sociocultural</h3>
+                <ul class="text-sm text-content space-y-2">
+                    <li><span class="emoji-title text-xl">🌍</span><strong>Origens:</strong> Principal polo de atração para o Nordeste, com destaque para <span class="highlight-yellow">Pernambuco, Sergipe, Alagoas e Ceará.</span>.</li>
+                    <li><span class="emoji-title text-xl">🎨</span><strong>Etnia:</strong> Cidade predominantemente negra, com <span class="highlight-blue">83,9%</span> da população autodeclarada preta ou parda.</li>
+                    <li><span class="emoji-title text-xl">🎓</span><strong>Educação (Mulheres/Mães):</strong> <span class="highlight-red">29,5%</span> sem instrução e fundamental inconpleto e <span class="highlight-green">13,0%</span> com ensino superior completo, indicando um desafio e um potencial.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <!-- NOVA SEÇÃO: Três Cenários de Projeção -->
+    <section class="section-card" id="cenarios_projecao">
+        <h2 class="text-2xl title-violet mb-6 flex items-center">
+            <span class="emoji-title">🔮</span>
+            Três Cenários de Projeção Populacional (adicionando o método das Compenentes Demográficas)
+        </h2>
+        <p class="mb-6 text-content">
+            Para delinear os futuros demográficos possíveis, a projeção foi realizada por três métodos, fornecendo um intervalo de cenários (conservador, intermediário e acelerado) para um planejamento mais seguro e adaptativo. Além dos métodos Linear e Geométrico, o terceiro método, das Componentes, só foi possível após a divulgação dos dados de migração.
+        </p>
+        
+        <h3 class="text-xl title-lilac mt-6 mb-3 flex items-center">
+            <span class="emoji-title">🧮</span>
+            Tabela Comparativa dos Cenários de Projeção pela Componentes Demográficas (apenas possível para escala municipal)
+        </h3>
+        <div class="overflow-x-auto shadow-lg rounded-lg">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ano</th>
+                        <th>Cenário 1: Conservador (Linear ou Aritmético)</th>
+                        <th>Cenário 2: Intermediário (Geométrico)</th>
+                        <th>Cenário 3: Acelerado (Componentes)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>2022 (Base)</strong></td><td>300.372</td><td>300.372</td><td>300.372</td></tr>
+                    <tr><td><strong>2030</strong></td><td><span class="highlight-blue">338.640</span></td><td><span class="highlight-green">345.618</span></td><td><span class="highlight-red">369.252</span></td></tr>
+                    <tr><td><strong>2033*</strong></td><td><span class="highlight-blue">352.991</span></td><td><span class="highlight-green">364.242</span></td><td><span class="highlight-red">395.082</span></td></tr>
+                    <tr><td><strong>2040</strong></td><td><span class="highlight-blue">386.475</span></td><td><span class="highlight-green">413.205</span></td><td><span class="highlight-red">455.352</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-3 text-xs text-gray-500 italic">*Ano de referência para o ciclo de 10 anos do PDDU atualmente vigente (Lei n.1873/2023).</p>
+
+        <h3 class="text-xl title-lilac mt-12 mb-4 text-center flex items-center justify-center">
+            <span class="emoji-title">📈</span>
+            Visualização das Trajetórias de Crescimento (2022-2040)
+        </h3>
+        <div class="chart-container">
+            <canvas id="cenariosProjecaoChart"></canvas>
+        </div>
+        <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
+    </section>
+
+    <!-- Seção 4: Correlação com Características Territoriais e Desenvolvimento Urbano -->
     <section class="section-card" id="analise">
         <h2 class="text-2xl title-violet mb-6 flex items-center">
             <span class="emoji-title">🗺️</span>
             Correlação com Características Territoriais e Desenvolvimento Urbano
         </h2>
         <p class="mb-5 text-content">
-            As projeções refletem e intensificam padrões de desenvolvimento urbano já observados. O município possui uma clara divisão funcional: a Sede (administrativa, industrial, comercial) e a Orla (Abrantes e Monte Gordo - turística, imobiliária, ambiental).
+            As projeções para cada Distrito refletem e intensificam padrões de desenvolvimento urbano já observados. O município possui uma clara divisão funcional: a Sede (administrativa, industrial, comercial) e a Orla (Abrantes e Monte Gordo - turística, imobiliária, ambiental).
         </p>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="p-5 border-2 border-violet-300 rounded-xl bg-violet-50 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
@@ -295,10 +427,10 @@
                     <span class="emoji-title">🌊</span>
                     Distrito Abrantes
                 </h3>
-                <p class="text-sm text-content mb-2">Principal vetor de expansão (<span class="highlight-red">4,26% a.a.</span>). Forte vocação turística e imobiliária. Proximidade com Salvador.</p>
+                <p class="text-sm text-content mb-2">Principal vetor de expansão (<span class="highlight-red">4,26% a.a.</span>). Forte vocação turística e imobiliária. Áreas rurais, População quilombola, áreas ambientais. Proximidade com Salvador.</p>
                 <p class="text-sm text-content mt-2"><strong>Desafios Significativos:</strong></p>
                  <ul class="list-disc list-inside text-sm text-content space-y-1 pl-4">
-                    <li><span class="highlight-red">Forte pressão demográfica</span>.</li>
+                    <li><span class="highlight-red">Forte pressão demográfica: precisará absorver entre 47 mil e 90 mil habitantes até 2040.</span>.</li>
                     <li>Expansão de infraestrutura (saneamento, água, energia, mobilidade).</li>
                     <li>Demanda por equipamentos sociais.</li>
                     <li>Conflitos: ocupação vs. áreas de valor ambiental (SAVAM).</li>
@@ -309,7 +441,7 @@
                     <span class="emoji-title">🌳</span>
                     Distrito Monte Gordo
                 </h3>
-                <p class="text-sm text-content mb-2">Crescimento intermediário (<span class="highlight-blue">1,29% a.a.</span>). Localidades turísticas (Barra do Jacuípe, Guarajuba). População quilombola.</p>
+                <p class="text-sm text-content mb-2">Crescimento intermediário (<span class="highlight-blue">1,29% a.a.</span>). Localidades turísticas (Barra do Jacuípe, Guarajuba, Itacimirim). Áreas rurais, População quilombola, áreas ambientais.</p>
                 <p class="text-sm text-content mt-2"><strong>Desafios Relevantes:</strong></p>
                 <ul class="list-disc list-inside text-sm text-content space-y-1 pl-4">
                     <li>Conciliação: desenvolvimento vs. preservação.</li>
@@ -321,48 +453,49 @@
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
 
-     <section class="section-card" id="implicacoes">
+     <!-- Seção 5: Implicações para o Planejamento Municipal -->
+    <section class="section-card" id="implicacoes">
         <h2 class="text-2xl title-violet mb-6 flex items-center">
             <span class="emoji-title">💡</span>
             Implicações para o Planejamento Municipal
         </h2>
         <p class="mb-5 text-content">
-            As projeções indicam crescimento contínuo. O cenário geométrico (mais de <span class="highlight-green">413 mil hab. em 2040</span>) representa um desafio substancial, enquanto o linear (<span class="highlight-blue">386 mil hab.</span>) ainda demanda planejamento robusto. As principais implicações incluem:
+            As projeções indicam crescimento contínuo. O cenário das componentes demográficas (cerca de <span class="highlight-red">455 mil hab. em 2040</span>) representa um desafio extraordinário, o cenário geométrico (cerca de <span class="highlight-green">413 mil hab. em 2040</span>) representa um desafio substancial, enquanto o linear (<span class="highlight-blue">386 mil hab.</span>) ainda demanda planejamento robusto. As principais implicações incluem:
         </p>
         <div class="space-y-5">
             <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-violet-600 shadow-sm">
                 <span class="emoji-title text-2xl mr-4">🛠️</span>
                 <div>
                     <h4 class="font-semibold title-lilac text-lg">Infraestrutura e Serviços</h4>
-                    <p class="text-sm text-content">Investimento estratégico em água, esgoto, drenagem, energia, resíduos. Demanda por saúde, educação, segurança.</p>
+                    <p class="text-sm text-content">Investimento estratégico em abastacimento de água, esgotamento sanitário, drenagem, energia(s), gestão de resíduos. Demanda por equipamentos e serviços de saúde, educação, lazer, segurança pública.</p>
                 </div>
             </div>
             <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-blue-600 shadow-sm">
                 <span class="emoji-title text-2xl mr-4">🏡</span>
                 <div>
                     <h4 class="font-semibold title-lilac text-lg">Habitação</h4>
-                    <p class="text-sm text-content">Políticas para moradia digna, combate ao déficit habitacional, orientação da expansão urbana.</p>
+                    <p class="text-sm text-content">Políticas para moradia digna, combate ao déficit habitacional, orientação da expansão urbana sustentável, regularização fundiária.</p>
                 </div>
             </div>
             <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-yellow-500 shadow-sm">
                 <span class="emoji-title text-2xl mr-4">🚗</span>
                 <div>
                     <h4 class="font-semibold title-lilac text-lg">Mobilidade Urbana</h4>
-                    <p class="text-sm text-content">Investimentos em sistema viário, transporte coletivo, modos ativos (ciclovias, calçadas).</p>
+                    <p class="text-sm text-content">Investimentos em sistema viário, transporte público coletivo, modos ativos (ciclovias, calçadas). Planejar o VLT Metropolitano.</p>
                 </div>
             </div>
             <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-green-600 shadow-sm">
                 <span class="emoji-title text-2xl mr-4">📈</span>
                 <div>
                     <h4 class="font-semibold title-lilac text-lg">Desenvolvimento Econômico e Emprego</h4>
-                    <p class="text-sm text-content">Atrair investimentos, diversificar economia, gerar emprego e renda.</p>
+                    <p class="text-sm text-content">Atrair investimentos, diversificar economia, gerar emprego e renda para diversos segmentos econômicos.</p>
                 </div>
             </div>
             <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-red-600 shadow-sm">
                 <span class="emoji-title text-2xl mr-4">🌿</span>
                 <div>
                     <h4 class="font-semibold title-lilac text-lg">Gestão Ambiental e Territorial</h4>
-                    <p class="text-sm text-content">Conciliar ocupação urbana com proteção da SAVAM. Aplicação efetiva do PDDU-S.</p>
+                    <p class="text-sm text-content">Conciliar ocupação urbana com proteção do SAVAM (Sistema de Áreas de Valor Ambiental). Aplicação efetiva do PDDU.</p>
                 </div>
             </div>
              <div class="flex items-start p-4 rounded-lg bg-gray-50 border-l-4 border-gray-500 shadow-sm">
@@ -376,13 +509,14 @@
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
 
+    <!-- Seção 6: Considerações Finais -->
     <section class="section-card" id="conclusoes">
         <h2 class="text-2xl title-violet mb-5 flex items-center">
             <span class="emoji-title">🏁</span>
             Considerações Finais
         </h2>
         <p class="text-content mb-4">
-            As projeções populacionais apresentadas fornecem subsídios quantitativos <span class="highlight-yellow">importantes</span> para o planejamento de Camaçari. O cenário geométrico representa uma visão de continuidade do forte crescimento recente, impulsionado pela migração, enquanto o cenário linear oferece uma perspectiva mais conservadora.
+            As diferentes projeções populacionais apresentadas para o Município e  para os Distritos fornecem subsídios quantitativos <span class="highlight-yellow">importantes</span> para o planejamento de Camaçari. O cenário das componentes demográficas representa uma visão de continuidade do forte crescimento do muncípio de Camaçari, impulsionado pela migração. Já o cenário linear, tanto em nível municipal quanto distrital, oferece uma perspectiva mais conservadora e o cenário geométrico uma visão intermediária.
         </p>
         <p class="text-content">
             A realidade futura dependerá de múltiplos fatores, mas ambos os cenários indicam a necessidade premente de planejamento proativo e investimentos consistentes para garantir um desenvolvimento urbano <span class="highlight-green">sustentável, inclusivo</span> e com <span class="highlight-blue">qualidade de vida</span> para todos os camaçarienses. Recomenda-se a utilização destes cenários como balizadores para estudos setoriais e para a revisão dos planos municipais, com <span class="highlight-red">monitoramento constante</span> das tendências demográficas.
@@ -390,12 +524,13 @@
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
 
+    <!-- Seção 7: Créditos Institucionais -->
     <section class="credits-section" id="creditos">
         <h2 class="text-2xl title-violet mb-4 flex items-center">
             <span class="emoji-title">🏛️</span>
             Créditos Institucionais
         </h2>
-        <p><strong>Documento Base:</strong> BRIEFING SOBRE PROJEÇÕES POPULACIONAIS PARA O MUNICÍPIO DE CAMAÇARI E SEUS DISTRITOS (2030, 2033, 2040)</p>
+        <p><strong>Documento Base:</strong> BRIEFING SOBRE PROJEÇÕES POPULACIONAIS PARA O MUNICÍPIO DE CAMAÇARI E SEUS DISTRITOS (2030, 2033, 2040) e Análise Demográfica e Cenários de Projeção Populacional para o Município de Camaçari (2022-2040).</p>
         <p><strong>Elaboração:</strong></p>
         <p class="ml-4">Fábio Moura Costa – Urbanista e Msc. em Geografia</p>
         <p><strong>Realização:</strong></p>
@@ -403,7 +538,7 @@
         <p class="ml-4">Diretoria de Urbanismo (DIRURB)</p>
         <p class="ml-4">Secretaria de Desenvolvimento Urbano e Meio Ambiente (SEDUR)</p>
         <p class="ml-4">Prefeitura Municipal de Camaçari (PMC)</p>
-        <p><strong>Data:</strong> Maio de 2025, Camaçari - BA</p>
+        <p><strong>Data:</strong> Julho de 2025, Camaçari - BA</p>
         <p class="mt-3"><strong>Infográfico Digital:</strong> Elaborado com suporte de Inteligência Artificial Generativa, seguindo as diretrizes e conteúdo do documento original.</p>
         <div class="footer-text">Infográfico elaborado pela Coordenadoria de Planejamento e Projetos – (CPP) / Diretoria de Urbanismo (DIRURB) / SEDUR (PMC)</div>
     </section>
@@ -621,6 +756,101 @@
                     },
                      ticks: { color: textColorGraphs },
                      grid: { display: false }
+                }
+            }
+        }
+    });
+
+    // NOVO GRÁFICO: Linhas de Cenários de Projeção
+    const ctxCenarios = document.getElementById('cenariosProjecaoChart').getContext('2d');
+    new Chart(ctxCenarios, {
+        type: 'line',
+        data: {
+            labels: ['2022', '2030', '2033', '2040'],
+            datasets: [
+                {
+                    label: 'Cenário Conservador (Aritmético)',
+                    data: [300372, 338640, 352991, 386475],
+                    borderColor: colorAzulEscuroSolid,
+                    backgroundColor: colorAzulEscuro,
+                    fill: false,
+                    tension: 0.1,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Cenário Intermediário (Geométrico)',
+                    data: [300372, 345618, 364242, 413205],
+                    borderColor: colorVioletPrincipalSolid,
+                    backgroundColor: colorVioletPrincipal,
+                    fill: false,
+                    tension: 0.1,
+                    borderWidth: 3 // Destaque para o cenário mais provável
+                },
+                {
+                    label: 'Cenário Acelerado (Componentes)',
+                    data: [300372, 369252, 395082, 455352],
+                    borderColor: colorVermelhoSolid,
+                    backgroundColor: colorVermelho,
+                    fill: false,
+                    tension: 0.1,
+                    borderDash: [5, 5], // Linha tracejada para cenário de alerta
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 12 },
+                        color: textColorGraphs
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Três Cenários de Projeção Populacional para Camaçari',
+                    font: { size: 16, weight: 'bold' },
+                    color: '#4C1D95',
+                    padding: { top: 10, bottom: 20 }
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('pt-BR').format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false, // Começa um pouco abaixo do valor mínimo para melhor visualização
+                    title: {
+                        display: true,
+                        text: 'População Estimada',
+                        color: '#4C1D95'
+                    },
+                    ticks: {
+                        color: textColorGraphs,
+                        callback: function(value) { return (value / 1000).toFixed(0) + 'k'; }
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Ano',
+                        color: '#4C1D95'
+                    },
+                    ticks: { color: textColorGraphs }
                 }
             }
         }
